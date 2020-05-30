@@ -1,0 +1,24 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: elasticsearch-exporter
+  namespace: monitoring
+  annotations:
+    flux.weave.works/automated: "false"
+spec:
+  releaseName: elasticsearch-exporter
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com
+    name: elasticsearch-exporter
+    version: 1.1.0
+    helmVersion: v3
+  values:
+    es:
+      uri: elasticsearch-master.logging.svc.cluster.local
+    serviceMonitor:
+      enabled: true
+      labels:
+        release: prometheus
+
+  

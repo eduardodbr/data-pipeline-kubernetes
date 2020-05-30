@@ -1,0 +1,39 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: kibana
+  namespace: log
+  annotations:
+    flux.weave.works/automated: "false"
+spec:
+  releaseName: kibana
+  chart:
+    repository: https://helm.elastic.co
+    name: kibana
+    version: 7.7.0
+    helmVersion: v3
+  values:
+    resources:
+      requests:
+        cpu: "250m"
+        memory: "1Gi"
+      limits:
+        cpu: "250m"
+        memory: "1Gi"
+    #this postStart creates the indexes on kibana
+    lifecycle:
+      postStart:
+        exec:
+          command:
+            - bash
+            - -c
+            - |
+              #!/bin/bash
+              # Import a dashboard
+              KB_URL=http://localhost:5601
+              while [[ "$(curl -s -o /dev/null -w '%{http_code}\n' -L $KB_URL)" != "200" ]]; do sleep 1; done
+              for INDEX in kafka prometheus elasticsearch kube-dns kube-proxy alertmanager
+              do
+                curl -XPOST "$KB_URL/api/kibana/dashboards/import" -H "Content-Type: application/json" -H 'kbn-xsrf: true' -d '{"objects":[{"type":"index-pattern","id":"'$INDEX-pattern'","attributes":{"title":"'$INDEX'-*", "timeFieldName": "@timestamp"}}]}'
+              done

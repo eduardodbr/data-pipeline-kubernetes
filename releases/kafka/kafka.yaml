@@ -1,0 +1,31 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: kafka
+  namespace: kafka
+  annotations:
+    flux.weave.works/automated: "false"
+spec:
+  releaseName: kafka
+  chart:
+    repository: https://charts.bitnami.com/bitnami
+    name: kafka
+    version: 2.5.0
+    helmVersion: v3
+  values:
+    metrics:
+      kafka:
+        enabled: true
+      jmx:
+        enabled: true
+      serviceMonitor:
+        enabled: true
+        namespace: monitoring
+        selector:
+          release: prometheus #the label that prometheus-operator uses to select the servicemonitor
+    zookeeper:
+      metrics:
+        enabled: true
+
+  
