@@ -11,4 +11,5 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com
     name: prometheus-operator
+    helmVersion: v3
   
