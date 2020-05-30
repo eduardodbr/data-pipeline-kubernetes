@@ -23,7 +23,7 @@ spec:
         enabled: true
         namespace: monitoring
         selector:
-          release: prometheus #the label that prometheus-operator uses to select the servicemonitor
+          release: prometheus-operator #the label that prometheus-operator uses to select the servicemonitor
     zookeeper:
       metrics:
         enabled: true
