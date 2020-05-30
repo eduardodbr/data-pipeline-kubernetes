@@ -11,7 +11,7 @@ spec:
   chart:
     repository: https://charts.bitnami.com/bitnami
     name: kafka
-    version: 2.5.0
+    version: 10.3.3
     helmVersion: v3
   values:
     metrics:
