@@ -14,11 +14,12 @@ spec:
     version: 7.7.0
     helmVersion: v3
   values:
+    replicas: 2
     resources:
       requests:
-        cpu: "250m"
-        memory: "2Gi"
+        cpu: "200m"
+        memory: "1.5Gi"
       limits:
-        cpu: "250m"
-        memory: "2Gi"
+        cpu: "200m"
+        memory: "1.5Gi"
   
