@@ -13,4 +13,10 @@ spec:
     name: prometheus-operator
     version: 8.13.8
     helmVersion: v3
+  values:
+    grafana:
+      admin:
+        existingSecret: grafana-credentials
+        userKey: grafana-user
+        passwordKey: grafana-password
   
