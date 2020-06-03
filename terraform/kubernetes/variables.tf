@@ -23,4 +23,11 @@ variable "grafana_password" {
   type = string
 }
 
+variable "jenkins_user" {
+  type = string
+}
+
+variable "jenkins_password" {
+  type = string
+}
 

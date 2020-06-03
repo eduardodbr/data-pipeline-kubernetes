@@ -143,3 +143,15 @@ resource "kubernetes_secret" "grafana-credentials" {
     grafana-password = var.grafana_password
   }
 }
+
+resource "kubernetes_secret" "jenkins-credentials" {
+  metadata {
+    name = "jenkins-credentials"
+    namespace = "jenkins" #this should probably be a var
+  }
+
+  data = {
+    jenkins-user = var.jenkins_user
+    jenkins-password = var.jenkins_password
+  }
+}

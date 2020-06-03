@@ -15,6 +15,10 @@ spec:
     helmVersion: v3
   values:
     master:
+      admin:
+        existingSecret: jenkins-credentials
+        userKey: jenkins-user
+        passwordKey: jenkins-password
       installPlugins:
         - kubernetes:latest
         - workflow-job:latest
