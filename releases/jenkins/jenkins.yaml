@@ -16,9 +16,11 @@ spec:
   values:
     master:
       admin:
-        existingSecret: jenkins-credentials
-        userKey: jenkins-user
-        passwordKey: jenkins-password
+        existingSecret: jenkins-login-credentials
+        userKey: jenkins-admin-user
+        passwordKey: jenkins-admin-password
+        credentialsXmlSecret: jenkins-credentials
+        secretsFilesSecret: jenkins-secrets-secret
       installPlugins:
         - kubernetes:latest
         - workflow-job:latest
