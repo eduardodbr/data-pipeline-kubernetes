@@ -1,0 +1,6 @@
+credentials         = "~/k8s-the-hard-way-277515-e1c76f53fc3c.json"
+project             = "k8s-the-hard-way-277515"
+region              = "europe-west1"
+zone                = "europe-west1-b"
+grafana_user        = "erodrigues"
+grafana_password    = "teste"
