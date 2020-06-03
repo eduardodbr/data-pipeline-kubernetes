@@ -144,14 +144,14 @@ resource "kubernetes_secret" "grafana-credentials" {
   }
 }
 
-resource "kubernetes_secret" "jenkins-credentials" {
+resource "kubernetes_secret" "jenkins-login-credentials" {
   metadata {
-    name = "jenkins-credentials"
+    name = "jenkins-login-credentials"
     namespace = "jenkins" #this should probably be a var
   }
 
   data = {
-    jenkins-user = var.jenkins_user
-    jenkins-password = var.jenkins_password
+    jenkins-admin-user = var.jenkins_user
+    jenkins-admin-password= var.jenkins_password
   }
 }
