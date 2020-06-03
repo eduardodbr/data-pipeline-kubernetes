@@ -20,7 +20,7 @@ spec:
         memory: "750Mi"
       limits:
         cpu: "100m"
-        memory: "750mi"
+        memory: "750Mi"
     #this postStart creates the indexes on kibana
     lifecycle:
       postStart:
