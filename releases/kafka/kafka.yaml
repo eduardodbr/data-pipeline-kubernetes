@@ -24,6 +24,12 @@ spec:
         namespace: monitoring
         selector:
           release: prometheus-operator #the label that prometheus-operator uses to select the servicemonitor
+    #test only
+    resources:
+      requests:
+        memory: "250Mi"
+      limits:
+        memory: "1Gi"
     zookeeper:
       metrics:
         enabled: true
