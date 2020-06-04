@@ -19,7 +19,7 @@ The following services were deployed:
     - Kibana has a postStart lifecycle to create the indexes for: kafka prometheus elasticsearch kube-dns kube-proxy alertmanager
 3. Kafka 
 4. Jenkins - Although Flux already does CD I also decided to deploy Jenkins to build an entire CI/CD pipeline that can be found [here](https://github.com/eduardodbr/jenkins-pipeline).
-    - Credentials must be set using Secrets :
+    - Credentials must be set, either on UI or using Secrets :
         ```
         apiVersion: v1
         kind: Secret
