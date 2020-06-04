@@ -18,7 +18,7 @@ The following services were deployed:
     - Fluentd is deployed as a daemonset and the logs are sent with the respective pod name.
     - Kibana has a postStart lifecycle to create the indexes for: kafka prometheus elasticsearch kube-dns kube-proxy alertmanager
 3. Kafka 
-4. Jenkins - Although Flux already does CD I also decided to deploy Jenkins to build an entire CI/CD pipeline that can be found here.
+4. Jenkins - Although Flux already does CD I also decided to deploy Jenkins to build an entire CI/CD pipeline that can be found [here](https://github.com/eduardodbr/jenkins-pipeline).
     - Credentials must be set using Secrets :
         ```
         apiVersion: v1
