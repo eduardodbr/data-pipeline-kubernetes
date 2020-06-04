@@ -19,6 +19,13 @@ spec:
         enabled: true
       jmx:
         enabled: true
+        resources:
+          requests:
+            cpu:  "50m"
+            memory: "100Mi"
+          limits:
+            cpu:  "100m"
+            memory: "250Mi"
       serviceMonitor:
         enabled: true
         namespace: monitoring
