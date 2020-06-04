@@ -27,8 +27,10 @@ spec:
     #test only
     resources:
       requests:
+        cpu:  "200m"
         memory: "250Mi"
       limits:
+        cpu:  "250m"
         memory: "1Gi"
     zookeeper:
       metrics:
