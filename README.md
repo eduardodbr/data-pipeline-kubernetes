@@ -17,8 +17,11 @@ The following services were deployed:
 2. EFK stack (Elasticseach, Fluentd, Kibana) and elastic-exporter for monitoring
     - Fluentd is deployed as a daemonset and the logs are sent with the respective pod name.
     - Kibana has a postStart lifecycle to create the indexes for: kafka prometheus elasticsearch kube-dns kube-proxy alertmanager
-3. Kafka 
-4. Jenkins - Although Flux already does CD I also decided to deploy Jenkins to build an entire CI/CD pipeline that can be found [here](https://github.com/eduardodbr/jenkins-pipeline).
+3. Kafka
+    - 1 replica with auto scalling
+4. Cassandra
+5. Spark Operator with spark Appliction to consume from Kafka and write to Cassandra
+6. Jenkins - Although Flux already does CD I also decided to deploy Jenkins to build an entire CI/CD pipeline that can be found [here](https://github.com/eduardodbr/jenkins-pipeline).
     - Credentials must be set, either on UI or using Secrets :
         ```
         apiVersion: v1
