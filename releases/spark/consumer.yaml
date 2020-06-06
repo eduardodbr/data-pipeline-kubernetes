@@ -1,0 +1,50 @@
+apiVersion: "sparkoperator.k8s.io/v1beta2"
+kind: SparkApplication
+metadata:
+  name: spark-consumer
+  namespace: default
+spec:
+  type: Scala
+  mode: cluster
+  image: "gcr.io/k8s-the-hard-way-277515/spark-consumer:1.0.0"
+  imagePullPolicy: Always
+  mainClass: SparkConsumer
+  mainApplicationFile: "local:///opt/spark/examples/jars/spark-consumer-assembly-0.1.jar"
+  sparkVersion: "2.4.5"
+  enableWebhook: true
+  restartPolicy:
+    type: Never
+  volumes:
+    - name: "test-volume"
+      hostPath:
+        path: "/tmp"
+        type: Directory
+  driver:
+    cores: 1
+    coreLimit: "1000m"
+    memory: "512m"
+    env:
+      - name: KAFKA_BROKER
+        value: kafka-headless.kafka:9092
+      - name: TOPIC
+        value: test
+    labels:
+      version: 2.4.5
+    serviceAccount: spark-operator-spark
+    volumeMounts:
+      - name: "test-volume"
+        mountPath: "/tmp"
+  executor:
+    cores: 1
+    instances: 1
+    memory: "512m"
+    env:
+      - name: KAFKA_BROKER
+        value: kafka-headless.kafka:9092
+      - name: TOPIC
+        value: test
+    labels:
+      version: 2.4.5
+    volumeMounts:
+      - name: "test-volume"
+        mountPath: "/tmp"
