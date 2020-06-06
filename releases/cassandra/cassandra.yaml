@@ -1,0 +1,25 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: cassandra
+  namespace: cassandra
+  annotations:
+    flux.weave.works/automated: "false"
+spec:
+  releaseName: cassandra
+  chart:
+    repository: https://kubernetes-charts-incubator.storage.googleapis.com
+    name: cassandra
+    version: 0.15.1
+    helmVersion: v3
+  values:
+    persistence:
+      enabled: true
+    podSettings:
+      terminationGracePeriodSeconds: 1800
+    exporter:
+      enabled: true
+      servicemonitor:
+        enabled: true
+  
