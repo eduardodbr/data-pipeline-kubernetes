@@ -132,6 +132,18 @@ resource "kubernetes_namespace" "canary" {
   }
 }
 
+resource "kubernetes_namespace" "cassandra" {
+  metadata {
+    name = "cassandra"
+  }
+}
+
+resource "kubernetes_namespace" "spark-operator" {
+  metadata {
+    name = "spark-operator"
+  }
+}
+
 resource "kubernetes_secret" "grafana-credentials" {
   metadata {
     name = "grafana-credentials"
@@ -153,5 +165,28 @@ resource "kubernetes_secret" "jenkins-login-credentials" {
   data = {
     jenkins-admin-user = var.jenkins_user
     jenkins-admin-password= var.jenkins_password
+  }
+}
+
+resource "helm_release" "flux" {
+  name       = "sparkoperator"
+  repository = "https://kubernetes-charts-incubator.storage.googleapis.com"
+  chart      = "sparkoperator"
+  namespace  = "spark-operator"
+  version    = "1.3.0"
+
+  set {
+    name  = "helm.versions"
+    value = "v3"
+  }
+
+  set {
+    name  = "enableWebhook"
+    value = "true"
+  }
+
+  set {
+    name  = "sparkJobNamespace"
+    value = "default"
   }
 }
