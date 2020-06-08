@@ -28,6 +28,8 @@ spec:
         value: kafka-headless.kafka:9092
       - name: TOPIC
         value: test
+      - name: CASSANDRA
+        value: cassandra.cassandra:9042
     labels:
       version: 2.4.5
     serviceAccount: spark-operator-spark
@@ -43,6 +45,8 @@ spec:
         value: kafka-headless.kafka:9092
       - name: TOPIC
         value: test
+      - name: CASSANDRA
+        value: cassandra.cassandra:9042
     labels:
       version: 2.4.5
     volumeMounts:
