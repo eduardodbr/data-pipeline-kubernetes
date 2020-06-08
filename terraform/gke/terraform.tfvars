@@ -7,8 +7,18 @@ node_pools          = [
     name                       = "default"
     node_count                 = 1
     autoscaling_min_node_count = 3
-    autoscaling_max_node_count = 4
+    autoscaling_max_node_count = 6
     node_config_machine_type   = "n1-standard-1"
+    node_config_disk_type      = "pd-standard"
+    node_config_disk_size_gb   = 100
+    node_config_preemptible    = false
+  },
+  {
+    name                       = "spark"
+    node_count                 = 1
+    autoscaling_min_node_count = 1
+    autoscaling_max_node_count = 5
+    node_config_machine_type   = "n1-standard-2"
     node_config_disk_type      = "pd-standard"
     node_config_disk_size_gb   = 100
     node_config_preemptible    = false
